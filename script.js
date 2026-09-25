@@ -33,29 +33,33 @@ document.addEventListener("keydown", (event) => {
 
 const audio = document.getElementById("bgMusic");
 const musicButton = document.getElementById("musicButton");
+let isPlaying = false;
+
+function setMusicButtonState(playing) {
+  isPlaying = playing;
+  if (!musicButton) return;
+  musicButton.textContent = playing ? "Pause" : "Music";
+  musicButton.setAttribute("aria-label", playing ? "Pause background music" : "Play background music");
+}
 
 function playMusic() {
   if (audio) {
-    audio.play().catch(() => {
-      console.log("Audio play was blocked until user interaction.");
-    });
+    audio
+      .play()
+      .then(() => setMusicButtonState(true))
+      .catch(() => {
+        console.log("Audio play was blocked until user interaction.");
+      });
   }
 }
 
 if (audio && musicButton) {
-  let isPlaying = false;
-
   musicButton.addEventListener("click", () => {
     if (isPlaying) {
       audio.pause();
-      musicButton.textContent = "Music";
-      isPlaying = false;
+      setMusicButtonState(false);
     } else {
-      audio.play().catch(() => {
-        console.log("Audio play was blocked until user interaction.");
-      });
-      musicButton.textContent = "Pause";
-      isPlaying = true;
+      playMusic();
     }
   });
 }
@@ -86,13 +90,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let isGalleryLoaded = false;
   function loadRemainingGalleryImages() {
     if (isGalleryLoaded || !photoStack) return;
-    
+
     const lazyImages = photoStack.querySelectorAll("img[data-src]");
     lazyImages.forEach((img) => {
       img.src = img.dataset.src;
       img.removeAttribute("data-src");
     });
-    
+
     isGalleryLoaded = true;
   }
 
@@ -131,6 +135,13 @@ document.addEventListener("DOMContentLoaded", function () {
     photoStack.classList.add("open");
     photoStack.setAttribute("aria-expanded", "true");
     photoStack.setAttribute("aria-label", "Browse church gallery photos");
+
+    // Gawing keyboard-accessible ang bawat photo pagkatapos mag-expand
+    photoStack.querySelectorAll(".stack-photo img").forEach((img) => {
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", `Open ${img.alt || "photo"} in full size`);
+    });
   }
 
   if (photoStack) {
@@ -158,6 +169,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if ((event.key === "Enter" || event.key === " ") && !photoStack.classList.contains("open")) {
         event.preventDefault();
         expandGallery();
+        return;
+      }
+
+      // Keyboard support para sa bawat photo pagka-expand na
+      if ((event.key === "Enter" || event.key === " ") && photoStack.classList.contains("open")) {
+        const image = event.target.closest("img");
+        if (image) {
+          event.preventDefault();
+          openLightbox(image);
+        }
       }
     });
   }
