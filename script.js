@@ -31,6 +31,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// MUSIC: opt-in only. Walang forced autoplay — mas malinis at hindi nakakagulat sa users.
 const audio = document.getElementById("bgMusic");
 const musicButton = document.getElementById("musicButton");
 let isPlaying = false;
@@ -43,14 +44,13 @@ function setMusicButtonState(playing) {
 }
 
 function playMusic() {
-  if (audio) {
-    audio
-      .play()
-      .then(() => setMusicButtonState(true))
-      .catch(() => {
-        console.log("Audio play was blocked until user interaction.");
-      });
-  }
+  if (!audio) return;
+  audio
+    .play()
+    .then(() => setMusicButtonState(true))
+    .catch(() => {
+      console.log("Audio play was blocked.");
+    });
 }
 
 if (audio && musicButton) {
@@ -63,21 +63,6 @@ if (audio && musicButton) {
     }
   });
 }
-
-// Subukan agad
-playMusic();
-
-// Kapag may first interaction kahit saan sa page
-function startOnFirstInteraction() {
-  playMusic();
-  document.removeEventListener("click", startOnFirstInteraction);
-  document.removeEventListener("touchstart", startOnFirstInteraction);
-  document.removeEventListener("scroll", startOnFirstInteraction);
-}
-
-document.addEventListener("click", startOnFirstInteraction);
-document.addEventListener("touchstart", startOnFirstInteraction);
-document.addEventListener("scroll", startOnFirstInteraction);
 
 document.addEventListener("DOMContentLoaded", function () {
   const photoStack = document.getElementById("photoStack");
