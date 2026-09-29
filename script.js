@@ -1,6 +1,25 @@
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
+const announcement = document.getElementById("announcement");
+const announcementClose = document.getElementById("announcementClose");
+
+if (announcement && announcementClose) {
+  const storageKey = "announcementDismissed:" + announcement.dataset.id;
+
+  try {
+    if (localStorage.getItem(storageKey) === "1") {
+      announcement.hidden = true;
+    }
+  } catch (error) {}
+
+  announcementClose.addEventListener("click", () => {
+    announcement.hidden = true;
+    try {
+      localStorage.setItem(storageKey, "1");
+    } catch (error) {}
+  });
+}
 function closeMobileMenu() {
   navLinks.classList.remove("active");
   menuToggle.setAttribute("aria-expanded", "false");
@@ -61,6 +80,12 @@ if (audio && musicButton) {
     } else {
       playMusic();
     }
+  });
+}
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js").catch(() => {});
   });
 }
 
@@ -186,6 +211,35 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  const shareButton = document.getElementById("shareButton");
+
+if (shareButton) {
+  shareButton.addEventListener("click", async () => {
+    const shareData = {
+      title: "CSI Youth Org.",
+      text: "Connect, Serve, Inspire. Check out our church youth page!",
+      url: "https://cafgm-csi.github.io/youth.org/"
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        shareButton.textContent = "Link copied!";
+        setTimeout(() => {
+          shareButton.textContent = "Share";
+        }, 2000);
+      }
+    } catch (error) {
+      console.log("Share cancelled or failed.");
+    }
+  });
+}
+
+
+
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {

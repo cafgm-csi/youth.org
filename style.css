@@ -217,6 +217,69 @@ button:focus-visible,
     }
 }
 
+.announcement {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 52px;
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
+    font-size: 14px;
+    text-align: center;
+}
+
+.announcement p {
+    color: var(--white);
+}
+
+.announcement[hidden] {
+    display: none;
+}
+
+.announcement-close {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    transform: translateY(-50%);
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--white);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.announcement-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.map-embed {
+    margin-top: 24px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px var(--shadow);
+}
+
+.map-embed iframe {
+    display: block;
+    width: 100%;
+    height: 320px;
+    border: 0;
+}
+
+@media (max-width: 500px) {
+    .map-embed iframe {
+        height: 260px;
+    }
+}
+button.button {
+    font: inherit;
+    cursor: pointer;
+}
 
 .info-box {
     padding: 30px;

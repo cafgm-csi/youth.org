@@ -1,0 +1,14 @@
+{
+  "name": "CSI Youth Org.",
+  "short_name": "CSI Youth",
+  "description": "Connect, Serve, Inspire — our church youth ministry.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffafc",
+  "theme_color": "#f962ab",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

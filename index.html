@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,6 +6,8 @@
     <meta name="description" content="CSI Youth Org. — Connect, Serve, Inspire. Activities, officers, and gallery of our church youth ministry." />
 <meta name="theme-color" content="#f962ab" />
 <link rel="icon" href="images/logo.jpg" />
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="images/icon-192.png" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="CSI Youth Org." />
 <meta property="og:description" content="Connecting youth, Serving God, and Inspiring lives through Christ." />
@@ -23,7 +25,10 @@
       <source src="music.mp3" type="audio/mpeg" />
     </audio>
     <button id="musicButton" type="button">Music</button>
-
+<div class="announcement" id="announcement" data-id="octoberpraise-2026" role="region" aria-label="Announcement">
+  <p><strong>OctoberPRAISE</strong> • Oct 30 (Friday) • 5:00 PM • Main church. Join us!</p>
+  <button class="announcement-close" id="announcementClose" type="button" aria-label="Dismiss announcement">&times;</button>
+</div>
     <header class="header">
       <nav class="navbar">
         <div class="brand">
@@ -78,11 +83,15 @@
 
           <div class="hero-buttons">
             <a href="#about" class="button primary"> Learn More </a>
-
+            
             <a href="#activities" class="button secondary"> Our Activities </a>
+            <button class="button secondary" id="shareButton" type="button">Share</button>
           </div>
         </div>
+
       </section>
+
+      
 
       <!-- About -->
       <section class="section about" id="about">
@@ -346,7 +355,7 @@
             <div class="activity-info">
               <h3>OctoberPRAISE</h3>
 
-              <p>Friday • 7:00 PM</p>
+              <p>Friday • 5:00 PM</p>
 
               <p>Main church • Doña maria subdivision</p>
             </div>
@@ -652,29 +661,37 @@
           <div class="info-box">
             <h3>Church Name</h3>
 
-            <p>Christ is the answer full Gospel Ministry</p>
+            <p><strong class="church-highlight">Christ is the Answer Full Gospel Ministry</strong></p>
           </div>
-
-          <a
-            href="https://www.google.com/maps/place/Christ+is+the+Answer+Full+Gospel+Ministry+Church/@14.6797569,120.5244202,17z/data=!4m14!1m7!3m6!1s0x33966aaa637895a5:0x2970ee5084ac370b!2sChrist+is+the+Answer+Full+Gospel+Ministry+Church!8m2!3d14.6797517!4d120.5270005!16s%2Fg%2F1tdb6c8x!3m5!1s0x33966aaa637895a5:0x2970ee5084ac370b!8m2!3d14.6797517!4d120.5270005!16s%2Fg%2F1tdb6c8x?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
-            class="location-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="info-box">
-              <h3>Location</h3>
-
-              <p>
-                Doña Maria Subdivision<br />
-                <span>(Tap to View on Google Maps)</span>
-              </p>
-            </div>
-          </a>
 
           <div class="info-box">
             <h3>Sunday Service</h3>
 
-            <p>9:15 AM to 11:30 AM</p>
+            <p><strong class="schedule-highlight">Every Sunday · 9:15 AM–11:30 AM</strong></p>
+          </div>
+
+          <div class="info-box location-box">
+            <h3>Location</h3>
+            <p>Doña Maria Subdivision</p>
+
+            <div class="map-frame">
+              <iframe
+                src="https://www.google.com/maps?q=14.6797517,120.5270005&z=17&output=embed"
+                title="Google Maps location of Christ Is the Answer Full Gospel Ministry Church"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
+            <a
+              class="location-link"
+              href="https://www.google.com/maps/place/Christ+is+the+Answer+Full+Gospel+Ministry+Church/@14.6797569,120.5244202,17z/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View on Google Maps
+            </a>
           </div>
         </div>
       </section>
@@ -703,13 +720,14 @@
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+       <footer class="footer">
       <div>
-       <h3>CSI Youth Org.</h3>
-<p>Growing together. Serving together.</p>
-...
-<p class="copyright">© 2026 CSI Youth Org. All rights reserved.</p>
+        <h3>CSI Youth Org.</h3>
+        <p>Growing together. Serving together.</p>
+      </div>
+
+      <p class="copyright">© 2026 CSI Youth Org. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
   </body>
