@@ -365,6 +365,35 @@ button.button {
     color: var(--pink-700);
 }
 
+.share-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 4px 2px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--pink-700);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.share-button svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+}
+
+.share-button:hover {
+    color: var(--pink-500);
+    transform: translateY(-2px);
+}
+
 /* SECTIONS */
 .section {
     max-width: 1150px;
