@@ -212,35 +212,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  const shareButton = document.getElementById("shareButton");
-
-if (shareButton) {
-  shareButton.addEventListener("click", async () => {
-    const shareData = {
-      title: "CSI Youth Org.",
-      text: "Connect, Serve, Inspire. Check out our church youth page!",
-      url: "https://cafgm-csi.github.io/youth.org/"
-    };
-
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(shareData.url);
-        shareButton.textContent = "Link copied!";
-        setTimeout(() => {
-          shareButton.textContent = "Share";
-        }, 2000);
-      }
-    } catch (error) {
-      console.log("Share cancelled or failed.");
-    }
-  });
-}
-
-
-
-
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       if (lightbox && lightbox.classList.contains("active")) {
